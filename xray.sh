@@ -658,24 +658,6 @@ EOF
         if [[ "$WS" = "true" ]]; then
             cat > ${NGINX_CONF_PATH}${DOMAIN}.conf<<-EOF
 server {
-    listen       443 ssl http2;
-    listen       [::]:443 ssl http2;
-    server_name ssr.${DOMAIN};
-    charset utf-8;
-
-    ssl_protocols TLSv1.1 TLSv1.2;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
-    ssl_ecdh_curve secp384r1;
-    ssl_prefer_server_ciphers on;
-    ssl_session_cache shared:SSL:10m;
-    ssl_session_timeout 10m;
-    ssl_session_tickets off;
-    ssl_certificate /usr/local/etc/xray/${DOMAIN}.pem;
-    ssl_certificate_key /usr/local/etc/xray/${DOMAIN}.key;
-
-    root /usr/share/nginx/html;
-}
-server {
     listen 80;
     listen [::]:80;
     server_name ${DOMAIN};
@@ -1940,7 +1922,7 @@ menu() {
     echo -e "  ${GREEN}10.${PLAIN}  install ${BLUE}trojan+XTLS${PLAIN}${RED}(recommend)${PLAIN}"
     echo " -------------"
     echo -e "  ${GREEN}11.${PLAIN}  upgrade Xray"
-    echo -e "  ${GREEN}12.  ${RED}  uninstall Xray${PLAIN}"
+    echo -e "  ${GREEN}12.${RED}  uninstall Xray${PLAIN}"
     echo " -------------"
     echo -e "  ${GREEN}13.${PLAIN}  start Xray"
     echo -e "  ${GREEN}14.${PLAIN}  restart Xray"
